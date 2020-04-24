@@ -41,8 +41,8 @@ namespace Test.Services
                         throw new ArgumentException("Cannot find such id");
                     }
 
-                    com.CommandText = "select Name, Description, DeadLine, IdProject, IdTaskType from TeamMember, Task where task.IdAssignedTo = TeamMember.IdTeamMember and IdTeamMember = @id order by deadline";
-                    com.Parameters.AddWithValue("id", id);
+                    com.CommandText = "select Name, Description, DeadLine, IdProject, IdTaskType from TeamMember, Task where task.IdAssignedTo = TeamMember.IdTeamMember and IdTeamMember = @idMember order by deadline";
+                    com.Parameters.AddWithValue("idMember", id);
                     dr = com.ExecuteReader();
                     
                     while (dr.Read())
