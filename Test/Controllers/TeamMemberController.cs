@@ -34,7 +34,7 @@ namespace Test.Controllers
             return Ok(result);
         }
 
-        [HttpPost]
+        [HttpDelete]
         public IActionResult deleteProject(string name)
         {
             try
