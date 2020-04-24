@@ -24,8 +24,8 @@ namespace Test.Services
                 using (var com = new SqlCommand())
                 {
                     com.Connection = con;
-                    com.CommandText = "select firstname, lastname, email from TeamMember where idteammember = @id";
-                    com.Parameters.AddWithValue("@id", id);
+                    com.CommandText = "select firstname, lastname, email from TeamMember where idteammember = @idMember";
+                    com.Parameters.AddWithValue("idMember", id);
                     con.Open();
 
                     var dr = com.ExecuteReader();
@@ -42,7 +42,7 @@ namespace Test.Services
                     }
 
                     com.CommandText = "select Name, Description, DeadLine, IdProject, IdTaskType from TeamMember, Task where task.IdAssignedTo = TeamMember.IdTeamMember and IdTeamMember = @id order by deadline";
-                    com.Parameters.AddWithValue("@id", id);
+                    com.Parameters.AddWithValue("id", id);
                     dr = com.ExecuteReader();
                     
                     while (dr.Read())
@@ -92,16 +92,16 @@ namespace Test.Services
                 if (dr.Read())
                 {
                     dr.Close();
-                    com.CommandText = "delete from task where idproject = @id";
-                    com.Parameters.AddWithValue("@id", projModel.IdProject);
+                    com.CommandText = "delete from task where idproject = @idMember";
+                    com.Parameters.AddWithValue("idMember", projModel.IdProject);
                     com.CommandText = "delete from project where name = @name";
-                    com.Parameters.AddWithValue("@name", project.Name);
+                    com.Parameters.AddWithValue("name", project.Name);
                 }
                 else
                 {
                     dr.Close();
                     com.CommandText = "delete from project where name = @name";
-                    com.Parameters.AddWithValue("@name", project.Name);
+                    com.Parameters.AddWithValue("name", project.Name);
                 }
 
                 com.ExecuteNonQuery();
